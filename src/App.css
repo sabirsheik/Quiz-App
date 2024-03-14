@@ -261,7 +261,9 @@ footer h5{
     .list-group li{
         margin:  0 20px;
     }
-   
+    .btn-container {
+        margin-left: 30px;
+    }
 }
 /* Min-width :1550px */
 
