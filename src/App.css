@@ -172,6 +172,11 @@ header button h3 a{
     height: 100%;
     background: var(--yellow-color);
 }
+.list-group-item {
+    cursor: pointer;
+  }
+  
+  
 
 /* Footer */
 
@@ -260,9 +265,6 @@ footer h5{
     
     .list-group li{
         margin:  0 20px;
-    }
-    .btn-container {
-        margin-left: 30px;
     }
 }
 /* Min-width :1550px */
