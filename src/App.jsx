@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import question from "./Data/question.json";
 import "./App.css";
@@ -13,6 +16,8 @@ export default function App() {
   const onSelectOption = (qid, op) => {
     const updatedAnswers = [...answers];
     updatedAnswers[qid - 1] = op;
+
+
     setAnswers(updatedAnswers);
 
     // Move to the next question
@@ -87,7 +92,3 @@ export default function App() {
     </>
   );
 }
-
-
-
-

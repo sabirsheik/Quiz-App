@@ -13,6 +13,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100vh;
+    padding-bottom: 100px;
 }
 :root{
     --yellow-color : #ffee00;
