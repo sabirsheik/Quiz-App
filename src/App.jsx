@@ -16,6 +16,12 @@ export default function App() {
     updatedAnswers[qid - 1] = op;
     setAnswers(updatedAnswers);
     setAnswered(true); // Mark the question as answered
+
+    // Automatically move to the next question after selection
+    setTimeout(() => {
+      setQIndex(qIndex + 1);
+      setAnswered(false); // Reset answered flag for the next question
+    }, 500); // Short delay for the user to see the selected answer
   }
 
   const getOptionStyle = (q, op) => {
@@ -69,16 +75,6 @@ export default function App() {
             </ul>
           </div>
         )}
-        <div className="btn-container">
-          {answered && (
-            <button onClick={() => { 
-              setQIndex(qIndex + 1); 
-              setAnswered(false); // Reset answered flag for the next question 
-            }}>
-              Next Question
-            </button>
-          )}
-        </div>
       </div>
       <Footer />
     </>
