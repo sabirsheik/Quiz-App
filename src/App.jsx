@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from "react";
 import question from "./Data/question.json";
 import "./App.css";
@@ -11,29 +8,23 @@ export default function App() {
   const [allQuestion, setAllQuestion] = useState(question);
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [answered, setAnswered] = useState(false); // Track if a question is answered
   const totalQuestions = allQuestion.length;
 
   const onSelectOption = (qid, op) => {
     const updatedAnswers = [...answers];
     updatedAnswers[qid - 1] = op;
-
-
     setAnswers(updatedAnswers);
-
-    // Move to the next question
-    setQIndex(qIndex + 1);
+    setAnswered(true); // Mark the question as answered
   }
 
   const getOptionStyle = (q, op) => {
     const style = "list-group-item";
+    if (!answered) return style; // Don't style until an option is selected
 
-    if (op !== q.selectedOption)
-      return style;
-
-    if (op === q.answer)
-      return style + " bg-success";
-    else
-      return style + " bg-danger";
+    if (op === q.answer) return style + " bg-success"; // Correct answer
+    if (op === answers[q.id - 1]) return style + " bg-danger"; // Incorrect answer
+    return style; // Default style
   }
 
   const getResult = () => {
@@ -50,8 +41,6 @@ export default function App() {
   }
 
   const q = allQuestion[qIndex];
-
-  // Check if all questions have been answered
   const quizComplete = qIndex === totalQuestions;
 
   return (
@@ -82,9 +71,14 @@ export default function App() {
             </ul>
           </div>
         )}
-        {!quizComplete && (
+        {!quizComplete && answered && (
           <div className="btn-container">
-            <button onClick={() => setQIndex(qIndex + 1)}>Next Question</button>
+            <button onClick={() => { 
+              setQIndex(qIndex + 1); 
+              setAnswered(false); // Reset the answered flag for the next question 
+            }}>
+              Next Question
+            </button>
           </div>
         )}
       </div>
