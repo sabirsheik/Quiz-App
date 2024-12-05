@@ -20,10 +20,8 @@ export default function App() {
 
   const getOptionStyle = (q, op) => {
     const style = "list-group-item";
-    if (!answered) return style; // Don't style until an option is selected
-
-    if (op === q.answer) return style + " bg-success"; // Correct answer
-    if (op === answers[q.id - 1]) return style + " bg-danger"; // Incorrect answer
+    if (op === q.answer && answered) return style + " bg-success"; // Correct answer
+    if (op === answers[q.id - 1] && answered) return style + " bg-danger"; // Incorrect answer
     return style; // Default style
   }
 
@@ -71,16 +69,16 @@ export default function App() {
             </ul>
           </div>
         )}
-        {!quizComplete && answered && (
-          <div className="btn-container">
+        <div className="btn-container">
+          {answered && (
             <button onClick={() => { 
               setQIndex(qIndex + 1); 
-              setAnswered(false); // Reset the answered flag for the next question 
+              setAnswered(false); // Reset answered flag for the next question 
             }}>
               Next Question
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
       <Footer />
     </>
